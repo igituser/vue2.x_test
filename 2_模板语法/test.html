@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>1.双大括号模板语法</h2>
+        <p>{{msg}}</p>
+        <p>{{msg.toUpperCase()}}</p>
+
+        <h2>2.指令一强制数据绑定</h2>
+        <!-- <a href="url">访问指定站点</a><br> --> <!-- 不能使用 -->
+        <a v-bind:href="url">访问指定站点2</a><br>
+        <a :href="url">访问站点3</a>
+
+        <h2>3.指令二绑定事件监听</h2>
+        <button v-on:click="handleClick">点我</button>
+        <button @click="handleClick2">点我2</button>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                msg:'hello,world!!!',
+                url:'https://www.baidu.com',
+            },
+            methods:{
+                handleClick:()=>{
+                    console.log('click')
+                },
+
+                handleClick2(){
+                    console.log('click2')
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

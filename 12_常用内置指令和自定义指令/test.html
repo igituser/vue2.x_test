@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo">
+        <h2>自定义指令</h2>
+        <p v-my-directive="msg"></p>
+        <p v-my-directive2="msg2"></p>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        //注册全局自定义指令
+        Vue.directive('my-directive',function(el, bind){
+            el.innerHTML = bind.value.toUpperCase();
+        })
+
+        new Vue({
+            el:'#demo',
+            data:{
+                msg:'hello world! Vue! global!',
+                msg2:'this is my-directive2! Vue!'
+            },
+            //注册局部指令  
+            directives:{
+                'my-directive2':{
+                    bind(el, binding){
+                        el.innerHTML = binding.value.toUpperCase();
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

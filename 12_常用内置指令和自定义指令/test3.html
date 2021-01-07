@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo">
+        <p v-upper-text="msg"></p>
+        <p v-lower-text="msg"></p>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        //全局注册自定义指令
+        Vue.directive('upper-text',function(el, bind){
+            el.textContent = bind.value.toUpperCase()
+        })
+
+        new Vue({
+            el:'#demo',
+            data:{
+                msg:'Hello World! Vue!'
+            },
+
+            directives:{
+                'lower-text':{
+                    bind(el, binding){
+                        el.innerHTML = binding.value.toLowerCase();
+                    } 
+                }
+            }
+        })
+    </script>
+</body>
+</html>

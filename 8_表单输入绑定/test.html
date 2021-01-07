@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo">
+        <form action="" @submit.prevent="handlerSubmit">
+            <span>用户名</span><input type="text" v-model="user.username"><br>
+            <span>密码</span><input type="text" v-model="user.pwd"><br>
+            <span>性别</span>
+            <label for="female">女</label><input id="female" type="radio" name="sex" v-model="user.sex" value="female">
+            <label for="male">男</label><input id="male" type="radio" name="sex" v-model="user.sex" value="male">
+            <br>
+            <span>爱好</span>
+            <input type="checkbox" id="basket" value="basketball" v-model="user.likes"><label for="basket">篮球</label>
+            <input type="checkbox" id="foot" value="football" v-model="user.likes"><label for="foot">足球</label>
+            <input type="checkbox" id="pingpang" value="pingpang" v-model="user.likes"><label for="pingpang">乒乓球</label>
+            <br>
+            <span>城市</span>
+                <select name="cityId" id="city" v-model="user.cityId">
+                    <option selected value="">未选择</option>
+                    <option v-for="(city, index) in allCitys" :value="city.id" :keys="index">{{city.name}}</option>
+                </select>
+                <br>
+
+            <span>介绍</span>
+            <textarea name="desc" id="" rows="10" v-model="user.desc"></textarea><br><br>
+            <input type="submit" value="注册">
+        </form>
+    </div>
+
+
+
+
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el:'#demo',
+            data:{
+                user:{
+                    username:'',
+                    sex:'female',
+                    pwd:'',
+                    likes:[],
+                    cityId:'',
+                    desc:'',
+                },
+                allCitys: [{id: 1, name: 'BJ'}, {id: 2, name: 'SZ'},{id: 4, name: 'SH'}],
+            },
+            methods:{
+                handlerSubmit(event){
+                    alert(JSON.stringify(this.user))
+                }
+            }
+        })
+    </script>
+</body>
+</html>

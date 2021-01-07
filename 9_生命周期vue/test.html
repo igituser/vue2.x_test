@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo">
+        <button @click="destroyVue">destory vue</button>
+        <p v-show="isShowing">{{msg}}</p>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        var vue = new Vue({
+            el:'#demo',
+            data:{
+                msg:'尚硅谷教育',
+                isShowing:true,
+                persons:[],
+            },
+            methods:{
+                destroyVue(){
+                    this.$destroy()
+                    
+                },
+            },
+            beforeCreate(){
+                console.log("beforeCreate() msg=" + this.msg)
+            },
+            created(){
+                console.log('created() msg=' + this.msg)
+                //在created生命周期函数中模拟异步操作
+                this.intervalId = setInterval(()=>{
+                    console.log('------')
+                    this.isShowing = !this.isShowing
+                },1000)
+
+
+            },
+            beforeMount(){
+                console.log("beforeMount() msg=" + this.msg)
+            },
+            mounted(){
+                console.log("mounted() msg=" + this.msg)
+            },
+
+            beforeUpdate(){
+                console.log("beforeUpdate() isShowing=" + this.isShowing)
+            },
+
+            updated(){
+                console.log("updated() isShowing=" + this.isShowing)
+            },
+
+            beforeDestroy(){
+                console.log("beforeDestrosy() msg= " + this.msg)
+                clearInterval(this.intervalId)
+            },
+
+            destroy(){
+                console.log("destroy() msg=" + this.msg)
+            }
+
+
+
+        })
+    </script>
+</body>
+</html>

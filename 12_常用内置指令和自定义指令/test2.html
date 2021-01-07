@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="example">
+        <p v-html="url"></p>
+        <p v-text="url"></p>
+        <img :id="myid" :src="imageSrc" alt="">
+        <p>
+            <span ref="message">atguigu.com</span>
+            <button @click="showMsg">显示左侧文本</button>
+
+        </p>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        new Vue({
+            el:'#example',
+            data:{
+                url: '<a href="http://www.atguigu.com">尚硅谷</a>',
+                myid: 'abc123',
+                imageSrc: 'http://cn.vuejs.org/images/logo.png'
+
+            },
+            methods:{
+                showMsg(){
+                    alert(this.$refs.message.textContent)
+                }
+            }
+        })
+    </script>
+</body>
+</html>
